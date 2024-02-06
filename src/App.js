@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { createElement } from 'react';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Container from './components/Container/Container';
 
-function App() {
+const App = () => {
+  const darkMode = false;
+  const users = [{
+    name: "Darya", age: 20,  id: 0
+  },
+  {
+    name: "Dima", age: 29,  id: 1
+  },
+  {
+    name: "Felix", age: 25,  id: 2
+  },
+ ];
+
+  // const renderCard = () => {
+  //   return darkMode ? <div>Hello</div> : <h1>By</h1>;
+  // };
+  console.log("darkMode", darkMode)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <div 
+    className="App" 
+      style={{
+        minHeight:'100vh',
+        display: 'flex',
+        // color: darkMode ? 'red' : 'purple',
+        flexDirection: 'column',
+     }}
+    >
+    <Header darkMode={darkMode} users={users} />
+    <Container users={users} />
+    <Footer/>
+   </div>
   );
 }
 
