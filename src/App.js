@@ -4,7 +4,7 @@ import Footer from './components/Footer/Footer';
 import Container from './components/Container/Container';
 
 const App = () => {
-  const darkMode = false;
+  // const darkMode = false;
   const users = [{
     name: "Darya", age: 20,  id: 0
   },
@@ -19,7 +19,7 @@ const App = () => {
   // const renderCard = () => {
   //   return darkMode ? <div>Hello</div> : <h1>By</h1>;
   // };
-  console.log("darkMode", darkMode)
+  // console.log("darkMode", darkMode)
   return (
    <div 
     className="App" 
@@ -30,7 +30,9 @@ const App = () => {
         flexDirection: 'column',
      }}
     >
-    <Header darkMode={darkMode} users={users} />
+    <Header
+    //  darkMode={darkMode} users={users} 
+     />
     <Container users={users} />
     <Footer/>
    </div>

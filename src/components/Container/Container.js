@@ -1,5 +1,6 @@
 import React from "react";
-
+// import Counter from "../Counter";
+import UsersList from "../UsersList"
 
 class Container extends React.Component {
   renderList = (list) => {
@@ -13,28 +14,20 @@ class Container extends React.Component {
       )
     })
   };
-  handleClick = (e) => {
-    console.log("click", e)
-  };
+  // handleClick = (e, users) => {
+  //   console.log("click", e, users)
+  // };
 
   render () {
-    
     return (
       //метод життєвого циклу 
       <div 
         style={{
           flexGrow: '1',
         }}
-      >
-        {this.renderList(this.props.users)}
-        Container
-
-        <button
-        //пропс онклік
-        onClick={this.handleClick}
-        >
-          Button
-        </button>
+      > 
+        <UsersList />
+        {/* <Counter /> */}
       </div> 
     )
   }
