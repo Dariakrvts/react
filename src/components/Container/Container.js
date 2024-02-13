@@ -3,6 +3,14 @@ import React from "react";
 import UsersList from "../UsersList"
 
 class Container extends React.Component {
+  state = { users: [] };
+  componentDidMount() {
+    fetch("https://swapi.dev/api/people/")
+      .then(resp => resp.json())
+      .then((resp) => this.setState({users: resp.results}))
+      .catch((e) => console.log(e))
+  }
+
   renderList = (list) => {
     return list.map(elem => {
       //так задаються ключи
@@ -19,6 +27,7 @@ class Container extends React.Component {
   // };
 
   render () {
+    console.log("users", this.state.users);
     return (
       //метод життєвого циклу 
       <div 
@@ -26,7 +35,7 @@ class Container extends React.Component {
           flexGrow: '1',
         }}
       > 
-        <UsersList />
+        <UsersList users = {this.state.users}/>
         {/* <Counter /> */}
       </div> 
     )
