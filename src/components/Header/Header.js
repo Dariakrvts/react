@@ -1,4 +1,4 @@
-import'./header.css'
+import { Link } from "react-router-dom";
 
 //функція = функція яка щось повертає
 const Header = (props) => {
@@ -6,14 +6,41 @@ const Header = (props) => {
   // console.log(darkMode);
   return (
     <div className='header'
-      // style={{
-      //   height: 80,
-      //   width: '100',
-      //   backgroundColor: "#DEEAF8", 
-      //   color: whire,
-      // }}
+      style={{
+        height: 80,
+        width: '100',
+        backgroundColor: "#DEEAF8", 
+        color: '#000000',
+      }}
     >
-    Login
+    <ul 
+      style={{
+        display: "flex",
+        gap: "10px",
+        listStyle: "none",
+      }}>
+        <li>
+         <Link to="/"
+         style={{
+          color: "#000000"
+         }}
+         >Home</Link>
+        </li>
+        <li>
+         <Link to="/blogs"
+         style={{
+          color: "#000000"
+         }}
+         >Blogs</Link>
+        </li>
+        <li>
+          <Link to="/contact"
+          style={{
+            color: "#000000"
+           }}
+          >Contact</Link>
+        </li>
+    </ul>
   </div>
   );
 }

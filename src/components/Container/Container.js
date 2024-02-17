@@ -1,33 +1,17 @@
 import React from "react";
-// import Counter from "../Counter";
-import UsersList from "../UsersList"
+import { Routes, Route } from "react-router-dom";
+
+
+import Blogs from "../../pages/Blogs";
+import Contact from "../../pages/Contact";
+import Home from "../../pages/Home";
+import {PrivateRoute }from '../../hoc/PrivateRoute';
+
 
 class Container extends React.Component {
   state = { users: [] };
-  componentDidMount() {
-    fetch("https://swapi.dev/api/people/")
-      .then(resp => resp.json())
-      .then((resp) => this.setState({users: resp.results}))
-      .catch((e) => console.log(e))
-  }
-
-  renderList = (list) => {
-    return list.map(elem => {
-      //так задаються ключи
-      return (
-        <div key = {elem.id}
-      >
-        <h2>Name: {elem.name} </h2>
-      </div>
-      )
-    })
-  };
-  // handleClick = (e, users) => {
-  //   console.log("click", e, users)
-  // };
 
   render () {
-    console.log("users", this.state.users);
     return (
       //метод життєвого циклу 
       <div 
@@ -35,8 +19,16 @@ class Container extends React.Component {
           flexGrow: '1',
         }}
       > 
-        <UsersList users = {this.state.users}/>
-        {/* <Counter /> */}
+         {/* один з варіантів як можна зробити
+          <Routes>
+          <Route exact path="/" element={<PrivateRoute />}>
+            <Route exact path="/" element={<Home/>} />
+          </Route>
+
+              <Route path="blogs" element={<Blogs />} />  
+              <Route path="contact" element={<Contact />} />
+
+          </Routes> */}
       </div> 
     )
   }
