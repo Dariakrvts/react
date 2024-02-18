@@ -1,6 +1,7 @@
 import React from "react";
 // import Counter from "../Counter";
-import UsersList from "../UsersList"
+// import UsersList from "../UsersList"
+import SmileysPage from "./SmileysPage/SmileysPage";
 
 class Container extends React.Component {
   renderList = (list) => {
@@ -26,7 +27,8 @@ class Container extends React.Component {
           flexGrow: '1',
         }}
       > 
-        <UsersList />
+        <SmileysPage />
+        {/* <UsersList /> */}
         {/* <Counter /> */}
       </div> 
     )
