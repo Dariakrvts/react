@@ -40,6 +40,18 @@ const Header = (props) => {
            }}
           >Contact</Link>
         </li>
+        <li>
+          <Link to="/smileyspage"
+          style={{
+            color: "#000000"
+           }}
+          >Smileys Page</Link>
+        </li>
+        <Link to="/todolist"
+          style={{
+            color: "#000000"
+           }}
+          >Todo List</Link>
     </ul>
   </div>
   );

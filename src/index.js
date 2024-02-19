@@ -8,6 +8,8 @@ import ErrorPage from "./components/ErrorPage";
 import Blogs from './pages/Blogs';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
+import SmileysPage from './pages/SmileysPage';
+import TodoList from './pages/TodoList';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/smileyspage",
+        element: <SmileysPage />,
+      },
+      {
+        path: "/todolist",
+        element: <TodoList />,
       },
     ]
   },
