@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 
 
 import Blogs from "../../pages/Blogs";
@@ -19,6 +19,8 @@ class Container extends React.Component {
           flexGrow: '1',
         }}
       > 
+        <Outlet  />
+
          {/* один з варіантів як можна зробити
           <Routes>
           <Route exact path="/" element={<PrivateRoute />}>
@@ -29,6 +31,7 @@ class Container extends React.Component {
               <Route path="contact" element={<Contact />} />
 
           </Routes> */}
+          
       </div> 
     )
   }

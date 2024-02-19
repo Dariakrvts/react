@@ -5,6 +5,8 @@ import App from './App';
 import './index.css'
 import ErrorPage from "./components/ErrorPage";
 
+import Blogs from './pages/Blogs';
+import Contact from './pages/Contact';
 import Home from './pages/Home';
 
 const router = createBrowserRouter([
@@ -12,6 +14,20 @@ const router = createBrowserRouter([
     path: "/",
     element: <App/>,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/blogs",
+        element: <Blogs />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/",
+        element: <Home />,
+      },
+    ]
   },
 ]);
 
