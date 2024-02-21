@@ -2,61 +2,72 @@ import { useState, useEffect } from 'react';
 
 const Contact = () => {
   // const [value, setValue] = useState(0);
-  // const [option, setOption] = useState('');
-  const [timer, setTimer] = useState(0);
+  // const [timer, setTimer] = useState(0);
+  const [option, setOption] = useState('');
+  const [planet, setPlanet] = useState(null);
 
-  // useEffect( () => {
-  //   console.log("DID MOUNT");
+  // useEffect(() => {
+  //   // console.log('DID MOUNT');
+  // }, []); //ЯКЩО МАСИВ ПУСТИЙ ВІН ВІДПРАЦЮЄ 1 РАЗ
 
-  // }, [])  //ЯКЩО МАСИВ ПУСТИЙ ВІН ВІДПРАЦЮЄ 1 РАЗ
+  // useEffect(() => {
+  //   const id = setInterval(() => {
+  //     setTimer((value) => {
+  //       return value + 1;
+  //     });
+  //   }, 1000);
+  //   return () => { //відпрацює як Unmount
+  //     clearInterval (id)
+  //   }
+  // }, []);//масив залежності. коли туди передається якийсь велью відпрацьовує юз ефект та змінюється опшін
 
   useEffect(() => {
-    const id = setInterval(() => {
-      setTimer((value) => {
-        return value + 1;
-      });
-    }, 1000);
-    return () => { //відпрацює як Unmount
-      clearInterval (id)
-    }
-  }, []);
+    if (!option) return;
+    getPlanet(option);
+  }, [option]);
 
-  // const handelValueChange = () => {
-  //   // let newValue = value +1
-  //   setValue((prevValue) => {
-  //     return prevValue + 1;
-  //   });
-  // };
+  const getPlanet = (id) => {
+    fetch(`https://swapi.dev/api/planets/${id}/`)
+      .then((resp) => resp.json())
+      .then((resp) => setPlanet(resp))
+      .catch((e) => console.log(e));
+  };
 
-  // const handleSelectChange = (e) => {
-  //   // console.log(e.target.value);
-  //   setOption(e.target.value);
-  // };
+  const handleSelectChange = (e) => {
+    setOption(e.target.value);
+  };
 
-  // const [state, setState] = useState(0);
-  // const [users, setUsers] = useState(0);
-  // const [inoutValue, setInputValue] = useState ("");
-
-  // console.log(option);
-
-  console.log(timer);
+  console.log('planet', planet);
 
   return (
     <div style={{ padding: 50, paddingTop: 50 }}>
-      <h2>{timer}</h2>
+      <h2>{planet?.name}</h2>
 
-      {/* <p style={{ fontSize: 50 }}>{value}</p>
-      <button onClick={handelValueChange}>Increment</button> */}
       <div style={{ paddingTop: 50 }}>
-        {/* <select onChange={handleSelectChange}>
-          <option> Option 1 </option>
-          <option> Option 2 </option>
-          <option> Option 3 </option>
-        </select> */}
+        <select onChange={handleSelectChange}>
+          <option> 1 </option>
+          <option> 2 </option>
+          <option> 3 </option>
+        </select>
       </div>
     </div>
   );
 };
+
+// const handelValueChange = () => {
+//   // let newValue = value +1
+//   setValue((prevValue) => {
+//     return prevValue + 1;
+//   });
+// };
+
+// const [state, setState] = useState(0);
+// const [users, setUsers] = useState(0);
+// const [inoutValue, setInputValue] = useState ("");
+
+// console.log(option);
+
+// console.log(timer);
 
 export default Contact;
 
