@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function List() {
+function PhotoList() {
   const [users, setUsers] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [photos, setPhotos] = useState([]);
@@ -81,4 +81,4 @@ function List() {
   );
 }
 
-export default List;
+export default PhotoList;

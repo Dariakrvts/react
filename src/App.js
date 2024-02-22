@@ -1,14 +1,14 @@
-import { createElement } from 'react';
-import {  Routes, Route } from "react-router-dom";
+// import { createElement } from 'react';
+// import {  Routes, Route } from "react-router-dom";
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Container from './components/Container/Container';
-import { USERS } from './constants';
+// import { USERS } from './constants';
+import { useTasks } from './Context';
 
 const App = () => {
-  // const asd = () => {
-  //   throw new Error();
-  // };
+  const tasks = useTasks();
+  console.log(tasks);
     return (
     <div 
         style={{
@@ -17,7 +17,6 @@ const App = () => {
           flexDirection: 'column',
       }}
       >
-        {/* {asd()} */}
       <Header/>
       <Container />
       <Footer/>

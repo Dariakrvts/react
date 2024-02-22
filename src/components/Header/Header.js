@@ -55,11 +55,18 @@ const Header = (props) => {
           >Todo List</Link>
         </li> 
         <li>
-        <Link to="/list"
+        <Link to="/photolist"
           style={{
             color: "#000000"
            }}
-          >List</Link>
+          >PhotoList</Link>
+        </li> 
+        <li>
+        <Link to="/PhoneContacts"
+          style={{
+            color: "#000000"
+           }}
+          >Contacts</Link>
         </li> 
     </ul>
   </div>

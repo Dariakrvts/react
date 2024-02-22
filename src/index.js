@@ -3,14 +3,16 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, } from "react-router-dom";
 import App from './App';
 import './index.css'
-import ErrorPage from "./components/ErrorPage";
 
-import List from './pages/UserList';
+import ErrorPage from "./components/ErrorPage";
+import PhotoList from './pages/PhotoList';
 import Blogs from './pages/Blogs';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import SmileysPage from './pages/SmileysPage';
 import TodoList from './pages/TodoList';
+import {TasksProvider} from './Context.js'
+import PhoneContacts from './pages/PhoneContacts'
 
 const router = createBrowserRouter([
   {
@@ -39,8 +41,12 @@ const router = createBrowserRouter([
         element: <TodoList />,
       },
       {
-        path: "/list",
-        element: <List />,
+        path: "/photolist",
+        element: <PhotoList />,
+      },
+      {
+        path: "/PhoneContacts",
+        element: <PhoneContacts />,
       },
     ]
   },
@@ -49,6 +55,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <RouterProvider router={router} />
+  <TasksProvider>
+     <RouterProvider router={router} />
+  </TasksProvider>
+ 
   );
 

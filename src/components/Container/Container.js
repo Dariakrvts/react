@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
-import Contact from "../../pages/Contact";
 
 class Container extends React.Component {
-  state = { users: [] };
+  state = { counter: 0 };
+  handelChangeValue = () => {
+    this.setState({counter: 2}, () => {
+      console.log(this.state);
+    })
+    this.setState((prevState) => ({
+      counter: prevState.counter++,
+    }))
+  }
 
   render () {
     return (
