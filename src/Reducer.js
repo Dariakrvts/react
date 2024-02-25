@@ -14,6 +14,9 @@ function reducer(state, action) {
         age: state.age
       };
     }
+    default: {
+      console.log("object");
+    }
   }
   throw Error('Unknown action: ' + action.type);
 }

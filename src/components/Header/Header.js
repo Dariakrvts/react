@@ -68,6 +68,13 @@ const Header = (props) => {
            }}
           >Contacts</Link>
         </li> 
+        <li>
+          <Link to="/Comments"
+          style={{
+            color: "#000000"
+           }}
+          >Comments</Link>
+        </li> 
     </ul>
   </div>
   );

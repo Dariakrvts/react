@@ -1,9 +1,20 @@
+import { useRef } from "react";
+
 const Blog = () => {
+  let inputRef = useRef(null);
+
+  function handleClick() {
+    inputRef.current.focus();
+    console.log("inputRef", inputRef);
+  }
+
   return (
-    <div>
-      <h2>Name</h2>
-      <p> Loreal</p>
-    </div>
+    <>
+    <input ref={inputRef} />
+    <button onClick={handleClick}>
+      Focus the input
+    </button>
+  </>
   );
 };
 
