@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-undef */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider, } from "react-router-dom";
+import { createBrowserRouter, RouterProvider,  Routes, Route } from "react-router-dom";
 import App from './App';
 import './index.css'
 
@@ -15,6 +15,7 @@ import TodoList from './pages/TodoList';
 import {TasksProvider} from './Context.js'
 import PhoneContacts from './pages/PhoneContacts'
 import Comments from './pages/Comments';
+import Login from './pages/LogIn/index.js';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "/Comments",
         element: <Comments />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ]
   },
