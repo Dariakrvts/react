@@ -6,6 +6,8 @@ function PhotoList() {
   const [photos, setPhotos] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [selectedAlbumId, setSelectedAlbumId] = useState(null);
+  const [showAlbums, setShowAlbums] = useState(false); // Стан для відображення альбомів
+  const [showPhotos, setShowPhotos] = useState(false); // Стан для відображення фотографій
 
   // Завантаження списку користувачів з API
   useEffect(() => {
@@ -17,34 +19,36 @@ function PhotoList() {
 
   // Завантаження списку альбомів для обраного користувача
   useEffect(() => {
-    if (selectedUserId) {
+    if (selectedUserId && showAlbums) { // Враховуємо показ альбомів
       fetch(`https://jsonplaceholder.typicode.com/albums?userId=${selectedUserId}`)
         .then(response => response.json())
         .then(data => setAlbums(data))
         .catch(error => console.log(error));
     }
-  }, [selectedUserId]);
+  }, [selectedUserId, showAlbums]);
 
   // Завантаження списку фото для обраного альбому
   useEffect(() => {
-    if (selectedAlbumId) {
+    if (selectedAlbumId && showPhotos) { // Враховуємо показ фотографій
       fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${selectedAlbumId}`)
         .then(response => response.json())
         .then(data => setPhotos(data))
         .catch(error => console.log(error));
     }
-  }, [selectedAlbumId]);
+  }, [selectedAlbumId, showPhotos]);
 
   // Функція для обробки натискання кнопки "Album"
   const handleAlbumButtonClick = (userId) => {
     setSelectedUserId(userId);
     setSelectedAlbumId(null); // Скидає обраний альбом
+    setShowAlbums(prevState => !prevState); // Змінити стан відображення альбомів
+    setShowPhotos(false); // Сховати фотографії при зміні користувача
   };
 
   // Функція для обробки натискання кнопки "Photos"
   const handlePhotosButtonClick = (albumId) => {
     setSelectedAlbumId(albumId);
-    // setSelectedAlbumId(null); // Скидає обране фото
+    setShowPhotos(prevState => !prevState); // Змінити стан відображення фотографій
   };
 
   return (
@@ -55,13 +59,13 @@ function PhotoList() {
           <li key={user.id}>
             {user.name}
             <button onClick={() => handleAlbumButtonClick(user.id)}>Альбом</button>
-            {selectedUserId === user.id && (
+            {selectedUserId === user.id && showAlbums && ( // Перевірка на відображення альбомів
               <ul>
                 {albums.map(album => (
                   <li key={album.id}>
                     {album.title}
                     <button onClick={() => handlePhotosButtonClick(album.id)}>Фото</button>
-                    {selectedAlbumId === album.id && (
+                    {selectedAlbumId === album.id && showPhotos && ( // Перевірка на відображення фотографій
                       <ul>
                         {photos.map(photo => (
                           <li key={photo.id}>

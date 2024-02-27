@@ -55,10 +55,10 @@ const router = createBrowserRouter([
         path: "/Comments",
         element: <Comments />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      },
+      // {
+      //   path: "/login",
+      //   element: <Login />,
+      // },
     ]
   },
 ]);
