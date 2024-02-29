@@ -5,7 +5,7 @@ const TasksContext = createContext(null);
 // const TasksDispatchContext = createContext(null);
 
 export function TasksProvider({ children }) {
-  const [tasks, dispatch] = useState("tasks");
+  const [tasks] = useState("tasks");
 
   return (
     <TasksContext.Provider value={tasks}>

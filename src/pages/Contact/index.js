@@ -37,7 +37,7 @@ const Contact = () => {
     setOption(e.target.value);
   };
 
-  console.log('planet', planet);
+  // console.log('planet', planet);
 
   return (
     <div style={{ padding: 50, paddingTop: 50 }}>
