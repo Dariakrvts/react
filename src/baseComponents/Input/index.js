@@ -1,16 +1,16 @@
-const Input = ({handleChange, value, error, type}) => {
- return (
-  <div>
-    {value.error && <span>{value.error}</span>}
-    
-     <input 
-      type= "text"
-      onChange={this.props.handleChange} 
-      value={this.prips.value}
-      />
-  </div>
- 
- )
-}
+export const Input = ({ handleChange, value, error, type, height, styles }) => {
+  return (
+      <div>
+          {value.error && <span>{value.error}</span>}
 
-export default Input;
+          <input
+              onChange={handleChange}
+              value={value}
+              className={type === "primary" ? "red" : "blue"}
+              height={height}
+              type="text"
+              style={{ ...styles }}
+          />
+      </div>
+  );
+};

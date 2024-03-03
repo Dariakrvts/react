@@ -28,14 +28,16 @@ class Sidebar extends React.Component{
           }}
         >
           {/* Відображення навігаційних посилань за допомогою CustomNavLink */}
+          <CustomNavLink to="/home">home</CustomNavLink>
           <CustomNavLink to="/blogs">blogs</CustomNavLink>
           <CustomNavLink to="/comments">comments</CustomNavLink>
+          <CustomNavLink to="/forms">Forms</CustomNavLink>
           <CustomNavLink to="/contact">contact</CustomNavLink>
-          <CustomNavLink to="/home">home</CustomNavLink>
           <CustomNavLink to="/phonecontacts">phonecontacts</CustomNavLink>
           <CustomNavLink to="/photolist">photolist</CustomNavLink>
           <CustomNavLink to="/smilepages">smilepages</CustomNavLink>
           <CustomNavLink to="/todolist">todolist</CustomNavLink>
+          <CustomNavLink to="/ErorrTest">ErorrTest</CustomNavLink>
         </nav>
       </aside>
     );
