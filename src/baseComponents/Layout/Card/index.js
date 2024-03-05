@@ -13,7 +13,7 @@ export const Text = styled.p`
 `;
 
 export const Grid = styled.div`
-    /* width: ${(props) => 100 / props.xs}; */
+    /* width: ${(props) => (100 / props.xs)}; */
 `;
 
 export const Link = styled(ReactLink)`
