@@ -22,7 +22,7 @@ class Sidebar extends React.Component{
             display: "flex",
             gap: "10px",
             height: 80,
-            width: '100',
+            width: '60%',
             backgroundColor: "#DEEAF8", 
             color: '#000000',
           }}

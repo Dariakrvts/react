@@ -9,9 +9,9 @@ const Login = () => {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleLogout = () => {
-    logout();
-  };
+  // const handleLogout = () => {
+  //   logout();
+  // };
 
   const handleFieldChange = (e) => {
     if (e.target.name === "login") {
@@ -33,9 +33,9 @@ const Login = () => {
     return (
       <div className='Form'>
         <h1 className='FormTitle'>You are logged in</h1>
-        <button onClick={handleLogout}>
+        {/* <button onClick={handleLogout}>
           Logout
-        </button>
+        </button> */}
       </div>
     );
   }
@@ -52,6 +52,7 @@ const Login = () => {
             placeholder="Login"
             value={loginValue}
             onChange={handleFieldChange}
+            autoComplete="current-password"
           />
           {loginError && <p>{loginError}</p>}
         </div>
@@ -63,6 +64,7 @@ const Login = () => {
             placeholder="Password"
             value={passwordValue}
             onChange={handleFieldChange}
+            autoComplete="current-password"
           />
           {passwordError && <p>{passwordError}</p>}
           <button

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
+import Footer from "components/Footer/Footer";
 import Container from './components/Container/Container';
 import Sidebar from './components/Sidebar/Sidebar';
 import { AuthProvider } from "./components/Context/AuthContext";
@@ -37,9 +38,10 @@ class App extends Component {
         <Router>
           <div className="App">
             <Header onToggleMenu={this.handleToggle} isMenuOpen={this.state.toggleMenu}/>
+            <Sidebar isMenuOpen={this.state.toggleMenu}/>
             <div className='Wrapper'>
-              <Sidebar isMenuOpen={this.state.toggleMenu}/>
               <Container />
+              <Footer />
             </div>
           </div>
         </Router>
