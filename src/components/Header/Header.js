@@ -3,19 +3,19 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { Button } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import Dialog from '@mui/material/Dialog';
 import { AuthContext } from '../../components/Context/AuthContext';
 import Login from 'pages/LogIn';
-import Sidebar from 'components/Sidebar/Sidebar';
 
-export default function ButtonAppBar(props) {
+import { NavLink, useMatch } from 'react-router-dom';
+
+export default function ButtonAppBar() {
   const { isLoggedIn, logout } = useContext(AuthContext);
   const [dialogOpen, setDialogOpen] = useState(false); // Стан для контролю діалогового вікна
-  const [selectedValue, setSelectedValue] = useState('');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
-
+  const [setSelectedValue] = useState('');
+  const CustomNavLink = ({ to, children }) => {
+    const match = useMatch(to);
+    return <NavLink className={match ? 'NavItem active' : 'NavItem'} to={to}>{children}</NavLink>;}
   const handleLogout = () => {
     logout();
   };
@@ -28,20 +28,30 @@ export default function ButtonAppBar(props) {
     setDialogOpen(false); // Закриваємо діалогове вікно
     setSelectedValue(value);
   };
-  
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen); // Змінюємо стан відображення сайдбару при кожному натисканні на іконку
-  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" >
+        
         <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}
-          onClick={props.onToggleMenu}
-          >
-            <MenuIcon />
-          </IconButton>
+          <div  
+          style={{
+            display: "flex",
+            gap: "10px",
+            flexGrow: "1",
+            color: '#fffff',
+          }}>
+          <CustomNavLink to="/home">home</CustomNavLink>
+          <CustomNavLink to="/blogs">blogs</CustomNavLink>
+          <CustomNavLink to="/comments">comments</CustomNavLink>
+          <CustomNavLink to="/forms">Forms</CustomNavLink>
+          <CustomNavLink to="/contact">contact</CustomNavLink>
+          <CustomNavLink to="/phonecontacts">phonecontacts</CustomNavLink>
+          <CustomNavLink to="/photolist">photolist</CustomNavLink>
+          <CustomNavLink to="/smilepages">smilepages</CustomNavLink>
+          <CustomNavLink to="/todolist">todolist</CustomNavLink>
+          <CustomNavLink to="/ErorrTest">ErorrTest</CustomNavLink>
+          </div>
           {isLoggedIn ? (
             <Button onClick={handleLogout} color="inherit">
               Logout
