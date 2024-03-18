@@ -34,6 +34,9 @@ function reducer(state, action) {
     // Дія "setPasswordError": встановлення помилки паролю
     case 'setPasswordError':
       return { ...state, passwordError: action.payload };
+    // Дія "registration": реєстрація користувача
+    case 'registration':
+      return { ...state, users: [...state.users, action.payload] };
     // За замовчуванням повертає поточний стан
     default:
       return state;
@@ -66,6 +69,7 @@ export function AuthProvider({ children }) {
     logout: () => dispatch({ type: 'logout' }), // Функція для виходу
     setLoginError: (payload) => dispatch({ type: 'setLoginError', payload }), // Функція для встановлення помилки логіну
     setPasswordError: (payload) => dispatch({ type: 'setPasswordError', payload }), // Функція для встановлення помилки паролю
+    registration: (payload) => dispatch({ type: 'registration', payload }), // Функція для реєстрації
   };
 
   // Повертає постачальника контексту з встановленими значеннями

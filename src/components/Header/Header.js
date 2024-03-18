@@ -6,13 +6,12 @@ import { Button } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import { AuthContext } from '../../components/Context/AuthContext';
 import Login from 'pages/LogIn';
-
 import { NavLink, useMatch } from 'react-router-dom';
 
 export default function ButtonAppBar() {
   const { isLoggedIn, logout } = useContext(AuthContext);
   const [dialogOpen, setDialogOpen] = useState(false); // Стан для контролю діалогового вікна
-  const [setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState('');
   const CustomNavLink = ({ to, children }) => {
     const match = useMatch(to);
     return <NavLink className={match ? 'NavItem active' : 'NavItem'} to={to}>{children}</NavLink>;}
@@ -53,17 +52,19 @@ export default function ButtonAppBar() {
           <CustomNavLink to="/ErorrTest">ErorrTest</CustomNavLink>
           </div>
           {isLoggedIn ? (
-            <Button onClick={handleLogout} color="inherit">
+            <Button onClick={handleLogout} color="inherit" variant="outlined">
               Logout
             </Button>
           ) : (
-            <Button onClick={handleLoginClick} color="inherit">
+            <Button onClick={handleLoginClick} color="inherit" variant="outlined">
               Login
             </Button> 
           )}
         </Toolbar>
       </AppBar>
-      <Dialog margin='40px' onClose={handleDialogClose} open={dialogOpen}>
+      <Dialog style={{}}
+       onClose={handleDialogClose}
+       open={dialogOpen}>
         <Login  />
       </Dialog>
     </Box>

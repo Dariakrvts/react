@@ -37,7 +37,7 @@ class App extends Component {
       <AuthProvider>
         <Router>
           <div className="App">
-            <Header onToggleMenu={this.handleToggle} isMenuOpen={this.state.toggleMenu}/>
+            <Header />
             <Sidebar isMenuOpen={this.state.toggleMenu}/>
             <div className='Wrapper'>
               <Container />
