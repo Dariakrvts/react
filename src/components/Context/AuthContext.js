@@ -34,9 +34,16 @@ function reducer(state, action) {
     // Дія "setPasswordError": встановлення помилки паролю
     case 'setPasswordError':
       return { ...state, passwordError: action.payload };
-    // Дія "registration": реєстрація користувача
-    case 'registration':
-      return { ...state, users: [...state.users, action.payload] };
+    case 'register':
+      const existingUser = state.users.find((user) => user.username === action.payload.username);
+      if (existingUser) {
+        return { ...state, registrationError: 'User already exists' };
+      } else {
+        const newUser = { username: action.payload.username, password: action.payload.password };
+        const newUsers = [...state.users, newUser];
+        localStorage.setItem('users', JSON.stringify(newUsers));
+        return { ...state, users: newUsers, registrationError: null };
+      }
     // За замовчуванням повертає поточний стан
     default:
       return state;
@@ -48,8 +55,10 @@ const initialState = {
   isLoggedIn: localStorage.getItem('isLoggedIn') === 'true' || false, // Чи користувач автентифікований
   loginError: null, // Помилка логіну
   passwordError: null, // Помилка паролю
+  registrationError: null,
   users: [{ username: 'Admin', password: 'Admin12345' }], // Список користувачів
 };
+
 
 // Створення контексту для автентифікації
 export const AuthContext = createContext();
@@ -64,12 +73,14 @@ export function AuthProvider({ children }) {
     isLoggedIn: state.isLoggedIn,
     loginError: state.loginError,
     passwordError: state.passwordError,
+    registrationError: state.registrationError,
     users: state.users,
     login: (payload) => dispatch({ type: 'login', payload }), // Функція для входу
     logout: () => dispatch({ type: 'logout' }), // Функція для виходу
+    register: (payload) => dispatch({ type: 'register', payload }),
     setLoginError: (payload) => dispatch({ type: 'setLoginError', payload }), // Функція для встановлення помилки логіну
     setPasswordError: (payload) => dispatch({ type: 'setPasswordError', payload }), // Функція для встановлення помилки паролю
-    registration: (payload) => dispatch({ type: 'registration', payload }), // Функція для реєстрації
+    setRegistrationError: (payload) => dispatch({ type: 'setRegistrationError', payload }),
   };
 
   // Повертає постачальника контексту з встановленими значеннями

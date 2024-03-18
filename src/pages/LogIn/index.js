@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import Registration from 'pages/Registration';
 
 const Login = () => {
-  const { isLoggedIn, login, logout, setLoginError, setPasswordError } = useContext(AuthContext);
+  const { isLoggedIn, login, loginError, setLoginError, setPasswordError, passwordError } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [loginValue, setLoginValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
@@ -25,7 +25,7 @@ const Login = () => {
       setPasswordError(null);
       setPasswordValue(e.target.value);
     }
-    console.log(e.target.name);
+    console.log(loginError);
   };
 
   const handleSubmit = (e) => {
@@ -65,6 +65,7 @@ const Login = () => {
                 onChange={handleFieldChange}
                 autoComplete="current-password"
               />
+              {loginError && <p>{loginError}</p>}
             </div>
             <div className='FormRow'>
               <input
@@ -76,6 +77,7 @@ const Login = () => {
                 onChange={handleFieldChange}
                 autoComplete="current-password"
               />
+               {passwordError && <p>{passwordError}</p>}
               <Button
                 type="button"
                 variant="outlined"

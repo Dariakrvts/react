@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import { Button } from '@mui/material';
 
 const Registration = () => {
-  const { registration, login, setLoginError, setPasswordError } = useContext(AuthContext);
+  const { register, login, setLoginError, setPasswordError, passwordError, loginError } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [loginValue, setLoginValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
@@ -23,14 +23,17 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    registration({ username: loginValue, password: passwordValue });
-    login({ username: loginValue, password: passwordValue }); // Викликати функцію входу після успішної реєстрації
+    register({ username: loginValue, password: passwordValue });
+    // login({ username: loginValue, password: passwordValue }); // Викликати функцію входу після успішної реєстрації
+    // localStorage.setItem('isLoggedIn', 'false');
+    localStorage.setItem('username', loginValue);
+    localStorage.setItem('password', passwordValue);
   };
 
   return (
     <div className='Form'>
       <h1 className='FormTitle'>Register an Account</h1>
-      <form onSubmit={handleSubmit} className='Registration'>
+      <form onSubmit={handleSubmit} className='Register'>
         <div className='FormRow'>
           <input
             type="text"
@@ -40,7 +43,7 @@ const Registration = () => {
             value={loginValue}
             onChange={handleFieldChange}
             autoComplete="current-password"
-          />
+          />{loginError && <p>{loginError}</p>}
         </div>
         <div className='FormRow'>
           <input
@@ -52,6 +55,7 @@ const Registration = () => {
             onChange={handleFieldChange}
             autoComplete="current-password"
           />
+           {passwordError && <p>{passwordError}</p>}
           <Button
             type="button"
             variant="outlined"
