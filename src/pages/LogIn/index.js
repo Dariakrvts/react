@@ -31,6 +31,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     login({ username: loginValue, password: passwordValue });
+    console.log('натиснута кнопка логіну');
   };
   const handleRegistrationClick = () => {
     setShowRegistration(true);
@@ -50,9 +51,9 @@ const Login = () => {
 
   return (
     <div className='Form'>
-      <h1 className='FormTitle'>Log in to see more</h1>
       {showLoginForm && ( // Використовуйте стан для відображення або приховування тексту та інпутів для логіну
         <>
+        <h1 className='FormTitle'>Log in to see more</h1>
           <h2 >Don't have an account yet? <Button onClick={handleRegistrationClick}>Click here</Button></h2>
           <form onSubmit={handleSubmit} className='Login'>
             <div className='FormRow'>

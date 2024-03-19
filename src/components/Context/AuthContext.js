@@ -42,7 +42,7 @@ function reducer(state, action) {
         const newUser = { username: action.payload.username, password: action.payload.password };
         const newUsers = [...state.users, newUser];
         localStorage.setItem('users', JSON.stringify(newUsers));
-        return { ...state, users: newUsers, registrationError: null };
+        return { ...state, isLoggedIn: true, users: newUsers, registrationError: null };
       }
     // За замовчуванням повертає поточний стан
     default:
