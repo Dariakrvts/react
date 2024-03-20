@@ -1,12 +1,11 @@
+// store.js
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../features/counter/counterSlice";
-import loginReducer from "../features/login/loginSlice";
-import usersReducer from "../features/users/usersSlice";
+import { usersReducer, albumsReducer, photosReducer } from "../pages/PhotoList/PhotoListSlice"
 
 export const store = configureStore({
     reducer: {
-        counter: counterReducer,
-        login: loginReducer,
         users: usersReducer,
+        albums: albumsReducer,
+        photos: photosReducer
     },
 });

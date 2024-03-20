@@ -22,6 +22,7 @@ export const usersSlice = createSlice({
     },
   },
 });
+
 export const albumsSlice = createSlice({
   name: 'albums',
   initialState: {
@@ -44,6 +45,7 @@ export const albumsSlice = createSlice({
     },
   },
 });
+
 export const photosSlice = createSlice({
   name: 'photos',
   initialState: {
@@ -67,8 +69,24 @@ export const photosSlice = createSlice({
   },
 });
 
-export const { fetchUsersStart, fetchUsersSuccess, fetchUsersFailure } = usersSlice.actions;
-export const { fetchAlbumsStart, fetchAlbumsSuccess, fetchAlbumsFailure } = albumsSlice.actions;
-export const { fetchPhotosStart, fetchPhotosSuccess, fetchPhotosFailure } = photosSlice.actions;
+export const {
+  fetchUsersStart,
+  fetchUsersSuccess,
+  fetchUsersFailure
+} = usersSlice.actions;
 
-export default photosSlice.reducer;
+export const {
+  fetchAlbumsStart,
+  fetchAlbumsSuccess,
+  fetchAlbumsFailure
+} = albumsSlice.actions;
+
+export const {
+  fetchPhotosStart,
+  fetchPhotosSuccess,
+  fetchPhotosFailure
+} = photosSlice.actions;
+
+export const usersReducer = usersSlice.reducer;
+export const albumsReducer = albumsSlice.reducer;
+export const photosReducer = photosSlice.reducer;

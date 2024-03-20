@@ -1,10 +1,12 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router } from 'react-router-dom';
 import React, { Component } from 'react';
 import Header from './components/Header/Header';
-import Footer from "components/Footer/Footer";
+import Footer from 'components/Footer/Footer';
 import Container from './components/Container/Container';
 import Sidebar from './components/Sidebar/Sidebar';
-import { AuthProvider } from "./components/Context/AuthContext";
+import { AuthProvider } from './components/Context/AuthContext';
+import { store } from 'store';
+import { Provider } from 'react-redux';
 
 class App extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class App extends Component {
   }
 
   handleToggle() {
-    this.setState(prevState => ({ toggleMenu: !prevState.toggleMenu }));
+    this.setState((prevState) => ({ toggleMenu: !prevState.toggleMenu }));
   }
 
   componentDidMount() {
@@ -35,16 +37,18 @@ class App extends Component {
   render() {
     return (
       <AuthProvider>
-        <Router>
-          <div className="App">
-            <Header />
-            <Sidebar isMenuOpen={this.state.toggleMenu}/>
-            <div className='Wrapper'>
-              <Container />
-              <Footer />
+        <Provider store={store}>
+          <Router>
+            <div className="App">
+              <Header />
+              <Sidebar />
+              <div className="Wrapper">
+                <Container />
+                <Footer />
+              </div>
             </div>
-          </div>
-        </Router>
+          </Router>
+        </Provider>
       </AuthProvider>
     );
   }
