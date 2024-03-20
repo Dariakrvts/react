@@ -11,7 +11,7 @@ import { NavLink, useMatch } from 'react-router-dom';
 export default function ButtonAppBar() {
   const { isLoggedIn, logout } = useContext(AuthContext);
   const [dialogOpen, setDialogOpen] = useState(false); // Стан для контролю діалогового вікна
-  const [selectedValue, setSelectedValue] = useState('');
+  const [setSelectedValue] = useState('');
   const CustomNavLink = ({ to, children }) => {
     const match = useMatch(to);
     return <NavLink className={match ? 'NavItem active' : 'NavItem'} to={to}>{children}</NavLink>;}
@@ -40,16 +40,11 @@ export default function ButtonAppBar() {
             flexGrow: "1",
             color: '#fffff',
           }}>
-          <CustomNavLink to="/home">home</CustomNavLink>
-          <CustomNavLink to="/blogs">blogs</CustomNavLink>
-          <CustomNavLink to="/comments">comments</CustomNavLink>
           <CustomNavLink to="/forms">Forms</CustomNavLink>
-          <CustomNavLink to="/contact">contact</CustomNavLink>
           <CustomNavLink to="/phonecontacts">phonecontacts</CustomNavLink>
           <CustomNavLink to="/photolist">photolist</CustomNavLink>
           <CustomNavLink to="/smilepages">smilepages</CustomNavLink>
           <CustomNavLink to="/todolist">todolist</CustomNavLink>
-          <CustomNavLink to="/ErorrTest">ErorrTest</CustomNavLink>
           </div>
           {isLoggedIn ? (
             <Button onClick={handleLogout} color="inherit" variant="outlined">
