@@ -33,13 +33,15 @@ const Registration = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     register({ username: loginValue, password: passwordValue });
+    setShowRegistration( false );
+    setShowLoginForm(true );
   };
 
   const handleLoginClick = () => {
-    setShowRegistration(false);
-    setShowLoginForm(true);
+    setShowRegistration( false );
+    setShowLoginForm(true );
   };
 
   if (isLoggedIn) {
@@ -85,11 +87,11 @@ const Registration = () => {
                 {showPassword ? 'Hide' : 'Show'} Password
               </Button>
             </div>
-            <Button type="submit" variant="outlined">
+            <Button  type="submit" variant="outlined">
               Register
             </Button>
             <Button onClick={handleLoginClick} type="submit" variant="outlined">
-              Login
+              back to login form
             </Button>
           </form>
         </>

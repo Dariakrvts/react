@@ -29,7 +29,7 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     login({ username: loginValue, password: passwordValue });
     console.log('натиснута кнопка логіну');
   };
