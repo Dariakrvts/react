@@ -1,92 +1,64 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchUsers, fetchAlbumsByUserId, fetchPhotosByAlbumId } from '../PhotoList/PhotoThunks';
 
-export const usersSlice = createSlice({
-  name: 'users',
-  initialState: {
+const initialState = {
+  users: {
     list: [],
     loading: false,
-    error: null,
+    error: null
   },
-  reducers: {
-    fetchUsersStart: state => {
-      state.loading = true;
-      state.error = null;
-    },
-    fetchUsersSuccess: (state, action) => {
-      state.loading = false;
-      state.list = action.payload;
-    },
-    fetchUsersFailure: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
+  albums: {
+    list: [],
+    loading: false,
+    error: null
+  },
+  photos: {
+    list: [],
+    loading: false,
+    error: null
+  }
+};
+
+const photoSlice = createSlice({
+  name: 'photo',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUsers.pending, (state) => {
+        state.users.loading = true;
+      })
+      .addCase(fetchUsers.fulfilled, (state, action) => {
+        state.users.loading = false;
+        state.users.list = action.payload;
+      })
+      .addCase(fetchUsers.rejected, (state, action) => {
+        state.users.loading = false;
+        state.users.error = action.error.message;
+      })
+      .addCase(fetchAlbumsByUserId.pending, (state) => {
+        state.albums.loading = true;
+      })
+      .addCase(fetchAlbumsByUserId.fulfilled, (state, action) => {
+        state.albums.loading = false;
+        state.albums.list = action.payload;
+      })
+      .addCase(fetchAlbumsByUserId.rejected, (state, action) => {
+        state.albums.loading = false;
+        state.albums.error = action.error.message;
+      })
+      .addCase(fetchPhotosByAlbumId.pending, (state) => {
+        state.photos.loading = true;
+      })
+      .addCase(fetchPhotosByAlbumId.fulfilled, (state, action) => {
+        state.photos.loading = false;
+        state.photos.list = action.payload;
+      })
+      .addCase(fetchPhotosByAlbumId.rejected, (state, action) => {
+        state.photos.loading = false;
+        state.photos.error = action.error.message;
+      });
   },
 });
 
-export const albumsSlice = createSlice({
-  name: 'albums',
-  initialState: {
-    list: [],
-    loading: false,
-    error: null,
-  },
-  reducers: {
-    fetchAlbumsStart: state => {
-      state.loading = true;
-      state.error = null;
-    },
-    fetchAlbumsSuccess: (state, action) => {
-      state.loading = false;
-      state.list = action.payload;
-    },
-    fetchAlbumsFailure: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-  },
-});
-
-export const photosSlice = createSlice({
-  name: 'photos',
-  initialState: {
-    list: [],
-    loading: false,
-    error: null,
-  },
-  reducers: {
-    fetchPhotosStart: state => {
-      state.loading = true;
-      state.error = null;
-    },
-    fetchPhotosSuccess: (state, action) => {
-      state.loading = false;
-      state.list = action.payload;
-    },
-    fetchPhotosFailure: (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
-  },
-});
-
-export const {
-  fetchUsersStart,
-  fetchUsersSuccess,
-  fetchUsersFailure
-} = usersSlice.actions;
-
-export const {
-  fetchAlbumsStart,
-  fetchAlbumsSuccess,
-  fetchAlbumsFailure
-} = albumsSlice.actions;
-
-export const {
-  fetchPhotosStart,
-  fetchPhotosSuccess,
-  fetchPhotosFailure
-} = photosSlice.actions;
-
-export const usersReducer = usersSlice.reducer;
-export const albumsReducer = albumsSlice.reducer;
-export const photosReducer = photosSlice.reducer;
+export default photoSlice.reducer;

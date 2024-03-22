@@ -29,7 +29,6 @@ const Registration = () => {
       setPasswordError(null);
       setPasswordValue(e.target.value);
     }
-    console.log(e.target.name);
   };
 
   const handleSubmit = (e) => {

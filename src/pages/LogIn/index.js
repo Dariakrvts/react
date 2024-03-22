@@ -25,7 +25,7 @@ const Login = () => {
       setPasswordError(null);
       setPasswordValue(e.target.value);
     }
-    console.log(loginError);
+    // console.log(loginError);
   };
 
   const handleSubmit = (e) => {
